@@ -29,11 +29,11 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('SonarQube Analysis') {
-            /*steps {
+        /*stage('SonarQube Analysis') {
+            steps {
                 sh "mvn clean verify sonar:sonar -Dsonar.projectKey=devopsProject -Dsonar.projectName='devopsProject' -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400"
-            }*/
-        }
+            }
+        }*/
         stage('DockerBuild') {
             environment {
                 DOCKER_HUB_USERNAME = 'yosraMastouri'
