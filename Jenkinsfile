@@ -4,8 +4,8 @@ pipeline {
         stage('checkout GIT') {
             steps {
                 echo 'Pulling ...'
-                git branch: 'aicha',
-                    url: 'https://github.com/nadaTLILI/ProjetDevops.git'
+                git branch: 'main',
+                    url: 'https://github.com/ITI255sml/DevopsProject'
             }
         }
         stage('Affichage de la date système') {
