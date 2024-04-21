@@ -34,5 +34,26 @@ pipeline {
                 sh "mvn clean verify sonar:sonar -Dsonar.projectKey=devopsProject -Dsonar.projectName='devopsProject'"
             }
         }
+        stage('DockerBuild') {
+            environment {
+                DOCKER_HUB_USERNAME = 'yosraMastouri'
+            }
+            steps {
+                sh '''
+                    docker build -t $DOCKER_HUB_USERNAME/devops-project-image:1 .
+                '''
+            }
+        }
+        stage('DockerStart') {
+            environment {
+                DOCKER_HUB_USERNAME = 'yosraMastouri'
+            }
+            steps {
+                sh '''
+                    docker run -d -p 8089:8089 $DOCKER_HUB_USERNAME/devops-project-image:1
+                    docker start $DOCKER_HUB_USERNAME/devops-project-image:1
+                '''
+            }
+        }
     }
 }
